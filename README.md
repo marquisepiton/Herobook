@@ -4,6 +4,7 @@ This project is focused on PHP and MySQL. I create the backend for Facebook for 
 
 # Tech Stack 
     * PHP
+    * CRUD Operations
     * MySQL
 
 
