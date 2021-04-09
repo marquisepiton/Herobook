@@ -14,6 +14,7 @@ I created a database called 'sqlheroes' using phpMyadmin as my database solution
 * heroes
 * relationships 
 * relationship_types
+
 Then using php, I build 5 api's: 
 
 * getAllHeroes
