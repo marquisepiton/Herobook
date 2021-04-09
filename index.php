@@ -18,9 +18,10 @@
   <ul class="list-group list-group-flush">
      <li class="list-group-item"><a href='/api.php?route=getAllHeroes' target='_blank'>All Heroes</a></li>
      <li class="list-group-item"><a href="/api.php?route=getHeroByID&id=5">Get Hero By ID</a></li>
-     <li class="list-group-item"><a href="/api.php?route=createBattle">Create Battle</a></li>
-     <li class="list-group-item"><a href="/api.php?route=addHero">Add Hero</a></li>
+<!--      <li class="list-group-item"><a href="/api.php?route=createBattle">Create Battle</a></li> -->
+     <li class="list-group-item"><a href="/api.php?route=updateAbility&id=1">Update Hero Ability</a></li>
      <li class="list-group-item"><a href="/api.php?route=deleteHero&id=5">Delete Hero</a></li>
+    <li class="list-group-item"><a href="/api.php?route=addHero">Add Hero</a></li>
      <li class="list-group-item">Made by Marquise Piton</li>
   </ul>
   </div>

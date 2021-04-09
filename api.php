@@ -43,7 +43,7 @@ $mysqli = new mysqli(
     exit();
   }
   //Run this if the connection is good. 
-  echo 'Connected Sucessfully';  
+  //echo 'Connected Sucessfully<br>';  
 //============================================
  
 /*
@@ -67,20 +67,25 @@ switch ($route){
   case 'getAllHeroes':
     $myData = getAllHeroes($mysqli);
     break; 
-  case 'createBattle':
-    $myData = createBattle($mysqli,2,4,4);
-    break;
+//   case 'createBattle':
+//     $myData = createBattle($mysqli,2,4,4);
+//     break;
   case 'getHeroByID': 
     // Should return the hero "The Seer"
-    $myData = getHeroByID($mysqli,5);
+    $myData = getHeroByID($mysqli,6);
     break;
     // Should delete the hero "The Seer" 
   case 'deleteHero':
-    $myData = deleteHero($mysqli, 5);
+    $myData = deleteHero($mysqli,5);
+    break; 
+  case 'updateAbility':
+    $myData = updateAbility($mysqli,1,'coding');
     break; 
   case 'addHero':
-    $myData = addHero($mysqli);
-    break; 
+    $myData = addHero($mysqli,'Captin Deeznuts', 
+                      'He ask people a question and if they say WHAT he says deeznuts'
+                      ,'nuts',null);
+    break;
   default:
     $myData = json_encode([]);
 }
@@ -127,18 +132,18 @@ function getAllHeroes($mysqli){
   return json_encode($data);
 }
 // Creates a battle between two heroes.  
-function createBattle ($mysqli, $h1, $h2, $w){
-  $sql = "INSERT INTO battles (hero1,hero2,winner) 
-  VALUES ($h1, $h2, $w)";
+// function createBattle ($mysqli, $h1, $h2, $w){
+//   $sql = "INSERT INTO battles (hero1,hero2,winner) 
+//   VALUES ($h1, $h2, $w)";
   
-  if ($mysqli->query($sql) === True){
-    $record = "{'success':'created new battle'}";
-  }else{
-    echo "{'error': '" . $sql . " - " . $mysqli->error . "'}";
-  }
-  // Transforms the data into a json format.
-  return json_encode([$record]);
-}
+//   if ($mysqli->query($sql) === True){
+//     $record = "{'success':'created new battle'}";
+//   }else{
+//     echo "{'error': '" . $sql . " - " . $mysqli->error . "'}";
+//   }
+//   // Transforms the data into a json format.
+//   return json_encode([$record]);
+// }
 // Get the hero base on their ID. 
 function getHeroByID($mysqli,$id){
   $data=array();
@@ -160,25 +165,36 @@ function getHeroByID($mysqli,$id){
 }
 // Deletes the hero base on their ID. 
 function deleteHero($mysqli, $id){
-  $data=array(); 
   
   $sql = "DELETE 
           FROM heroes
-          WHERE id= " . $id;
-  if($result->num_rows > 0){
-    while($row = $result->fetch_assoc()){
-      array_push($data,$row);
-    }
+          WHERE id= " . $id ;
+  if($mysqli->query($sql)=== TRUE){
+    echo "Hero id: $id  data has been deleted";
+  }else{
+    echo "Error 50000 " .$mysqli->connect_error;
   }
-  return json_encode($data,$row);
 }
-// Creates a new hero 
-function addHero($mysqli){
-  $data=array();  
-  
-  $sql = "UPDATE heroes
-          SET column1=value, column2=value2,...
-          WHERE some_column=some_value ";
+// Update hero abilities
+function updateAbility($mysqli,$id, $ability){
+ 
+  $sql = "UPDATE abilities
+          SET ability='$ability'
+          WHERE id='$id'";
+  if($mysqli->query($sql) === TRUE){
+    echo "Hero's powers have transformed";
+  }else{
+    echo "Error 5000304949030593049 " .$mysqli->connect_error;
+  }
+}
+// Add a new hero
+function addHero($mysqli,$name,$about_me,$biography,$image_url){
+  $sql = "INSERT INTO heroes (name, about_me, biography, image_url) VALUES ('$name','$about_me','$biography','$image_url')";
+    if($mysqli->query($sql) === TRUE){
+    echo "A New Hero!";
+  }else{
+    echo "Error 1 " .$mysqli->connect_error;
+  }
 }
 ?>
     
