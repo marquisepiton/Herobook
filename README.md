@@ -7,7 +7,7 @@ This project is focused on PHP and MySQL. I create the backend for Facebook for 
     * CRUD Operations
     * MySQL
     
-In this project, I created a database called 'sqlheroes' using phpMyadmin as my database solution. Within the 'sqlheroes', I made these tables: 
+I created a database called 'sqlheroes' using phpMyadmin as my database solution. Within the 'sqlheroes', I made these tables: 
 
 * Abilities
 * Ability_hero
