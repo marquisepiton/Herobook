@@ -17,7 +17,7 @@ I created a database called 'sqlheroes' using phpMyadmin as my database solution
 
 Then using php, I build 5 api's: 
 
-* getAllHeroes
+* getAllHeroes                                 ![](./img/jsonExample.png)
 * addHero
 * getHeroByID
 * updateAbility
