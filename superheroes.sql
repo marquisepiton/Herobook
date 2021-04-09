@@ -1,5 +1,5 @@
 CREATE TABLE heroes (
-    id serial PRIMARY key,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name varchar(50) UNIQUE NOT NULL,
     about_me varchar(250) NOT null,
     biography text NOT NULL,
@@ -14,7 +14,7 @@ INSERT INTO heroes (name, about_me, biography) VALUES ('The Seer', 'He can see i
 INSERT INTO heroes (name, about_me, biography) VALUES ('Lidar Man', 'Born without the ability to see, Lidar Man learned to use his ears as a child. One day he was hit with an intense ray of gamma radiation and the only way the doctors could fix him was to add nanotech robots into his brain.', 'Because of the gamma radiation and nanotech combo, he now has the ability to see everyday objects using his mind, and with immense control he can even zoom in 1000X away!');
 
 CREATE TABLE relationship_types (
-    id serial PRIMARY key,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     type varchar(20) UNIQUE NOT NULL
 );
 
@@ -22,10 +22,13 @@ INSERT INTO relationship_types (type) VALUES ('Friend');
 INSERT INTO relationship_types (type) VALUES ('Enemy');
 
 CREATE TABLE relationships (
-    id serial PRIMARY key,
-    hero1_id INTEGER REFERENCES heroes (id),
-    hero2_id INTEGER REFERENCES heroes (id),
-    type_id INTEGER REFERENCES relationship_types (id)
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    hero1_id INTEGER NOT NULL,
+    FOREIGN KEY (hero1_id) REFERENCES heroes (id) ON DELETE CASCADE,
+    hero2_id INTEGER NOT NULL,
+    FOREIGN KEY (hero2_id) REFERENCES heroes (id) ON DELETE CASCADE,
+    type_id INTEGER NOT NULL,
+    FOREIGN KEY (type_id) REFERENCES relationship_types (id) ON DELETE CASCADE
 );
 
 INSERT INTO relationships (hero1_id, hero2_id, type_id) VALUES (1, 2, 1);
@@ -45,7 +48,7 @@ INSERT INTO relationships (hero1_id, hero2_id, type_id) VALUES (6, 2, 2);
 INSERT INTO relationships (hero1_id, hero2_id, type_id) VALUES (6, 5, 1);
 
 CREATE TABLE abilities (
-    id serial PRIMARY key,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     ability VARCHAR(50)
 );
 
@@ -58,9 +61,11 @@ INSERT INTO abilities (ability) VALUES ('Super Speed');
 INSERT INTO abilities (ability) VALUES ('Super Vision');
 
 CREATE TABLE ability_hero (
-    id serial PRIMARY key,
-    hero_id INTEGER REFERENCES heroes (id),
-    ability_id INTEGER REFERENCES abilities (id)
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    hero_id INTEGER NOT NULL,
+    FOREIGN KEY (hero_id) REFERENCES heroes (id) ON DELETE CASCADE,
+    ability_id INTEGER NOT NULL,
+    FOREIGN KEY (ability_id) REFERENCES abilities (id) ON DELETE CASCADE
 );
 
 INSERT INTO ability_hero (hero_id, ability_id) VALUES (1, 5);
