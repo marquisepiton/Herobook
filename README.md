@@ -26,7 +26,7 @@ Then using php, I build 5 api's:
 * getHeroByID
 * updateAbility
 * deleteHero
-* 
+
 ![](./img/jsonExample.png)
 
 Finally, I created a back-end focus Facebook version for Heroes called "Herobook!" Well...Kind of. 😅
