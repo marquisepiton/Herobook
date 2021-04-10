@@ -19,7 +19,7 @@ I created a database called 'sqlheroes' using phpMyadmin as my database solution
 
 ![](./img/database.png)
 
-Then using php, I build 5 api's: 
+Then using php, I build 5 APIs: 
 
 * getAllHeroes                                 
 * addHero
